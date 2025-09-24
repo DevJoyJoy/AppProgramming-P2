@@ -7,18 +7,20 @@ import axios from 'axios'
 function App() {
   const [cat, setCat] = useState({})
   
-  useEffect(() => {
-    getCat();
-  }, [])
-
+  
   const getCat = async () => {
     const response = await axios.get('https://cataas.com/cat')
     setCat(response.data)
   }
 
+  useEffect(() => {
+    getCat();
+  }, [])
+
   return (
     <>
-      <img src={cat.url} alt="" />
+      <button onClick={getCat}>Outro gato</button>
+      {cat.url && <img src={cat.url} alt="Cat" />}
     </>
   )
 }
